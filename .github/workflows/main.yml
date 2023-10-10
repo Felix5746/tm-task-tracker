@@ -3,33 +3,33 @@ name: NodeTest
 on: [push]
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
+     build:
+          runs-on: ${{ matrix.os }}
 
-    strategy:
-      matrix:
-        node-version: [8.x, 10.x, 12.x]
-        os: [ubuntu-latest]
+          strategy:
+               matrix:
+                    node-version: [18.x]
+                    os: [ubuntu-latest]
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
+          steps:
+               - name: Checkout code
+                 uses: actions/checkout@v1
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+               - name: Use Node.js ${{ matrix.node-version }}
+                 uses: actions/setup-node@v1
+                 with:
+                      node-version: ${{ matrix.node-version }}
 
-      - name: npm install, build and test
-        run: |          
-          npm install
-          npm run build --if-present
-          npm test
-        env:
-          CI: true
+               - name: npm install, build and test
+                 run: |
+                      npm install
+                      npm run build --if-present
+                      npm test
+                 env:
+                      CI: true
 
-      - name: Upload coverage artifacts
-        uses: actions/upload-artifact@master
-        with:
-          name: webpack artifacts
-          path: coverage/mochawesome-report/
+               - name: Upload coverage artifacts
+                 uses: actions/upload-artifact@master
+                 with:
+                      name: webpack artifacts
+                      path: coverage/mochawesome-report/
