@@ -22,7 +22,8 @@ jobs:
 
       - name: npm install, build and test
         run: |
-          npm ci  # Use 'npm ci' for a clean, faster install
+          npm install
+          npm cli  # Use 'npm ci' for a clean, faster install
           npm run build --if-present
           npm test
         env:
